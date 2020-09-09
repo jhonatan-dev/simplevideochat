@@ -29,20 +29,24 @@ navigator.mediaDevices
         allowHalfTrickle: false,
         reconnectTimer: 100,
         config: {
-          iceServers: [{
-            urls: [ "stun:us-turn9.xirsys.com" ]
-         }, {
-            username: "DVg5ibvyLXZ_vgYfwrr9g9z1Q3iDCcxLO--eYA7caTvOQCxK2gY6EXWfxEpghr8CAAAAAF9X9uJydWVkYWFwcA==",
-            credential: "e0b6fc8c-f219-11ea-8e84-0242ac140004",
-            urls: [
-                "turn:us-turn9.xirsys.com:80?transport=udp",
-                "turn:us-turn9.xirsys.com:3478?transport=udp",
-                "turn:us-turn9.xirsys.com:80?transport=tcp",
-                "turn:us-turn9.xirsys.com:3478?transport=tcp",
-                "turns:us-turn9.xirsys.com:443?transport=tcp",
-                "turns:us-turn9.xirsys.com:5349?transport=tcp"
-            ]
-         }],
+          iceServers: [
+            {
+              urls: [
+                "stun:3.15.4.15:3478?transport=udp",
+                "stun:3.15.4.15:3478?transport=tcp",
+              ],
+              username: "ruedaapp",
+              credential: "ruedaapp",
+            },
+            {
+              username: "ruedaapp",
+              credential: "ruedaapp",
+              urls: [
+                "turn:3.15.4.15:3478?transport=udp",
+                "turn:3.15.4.15:3478?transport=tcp",
+              ],
+            }
+          ],
         },
       });
       peer.on("stream", function (stream) {
