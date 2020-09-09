@@ -1,6 +1,7 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
+    secure: true,
     config: {
       iceServers: [
         { urls: "stun:stun.l.google.com:19302" },
