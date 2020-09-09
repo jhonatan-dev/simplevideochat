@@ -1,45 +1,29 @@
 const express = require('express')
 const app = express()
-const http = require('http').Server(app)
-const io = require('socket.io')(http)
-const port = process.env.PORT || 3000
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
+const { v4: uuidV4 } = require('uuid')
 
-app.use(express.static(__dirname + "/public"))
-let clients = 0
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
 
-io.on('connection', function (socket) {
-    socket.on("NewClient", function () {
-        if (clients < 2) {
-            if (clients == 1) {
-                this.emit('CreatePeer')
-            }
-        }
-        else
-            this.emit('SessionActive')
-        clients++;
-    })
-    socket.on('Offer', SendOffer)
-    socket.on('Answer', SendAnswer)
-    socket.on('disconnect', Disconnect)
+app.get('/', (req, res) => {
+  res.redirect(`/${uuidV4()}`)
 })
 
-function Disconnect() {
-    if (clients > 0) {
-        if (clients <= 2)
-            this.broadcast.emit("Disconnect")
-        clients--
-    }
-}
+app.get('/:room', (req, res) => {
+  res.render('room', { roomId: req.params.room })
+})
 
-function SendOffer(offer) {
-    this.broadcast.emit("BackOffer", offer)
-}
+io.on('connection', socket => {
+  socket.on('join-room', (roomId, userId) => {
+    socket.join(roomId)
+    socket.to(roomId).broadcast.emit('user-connected', userId)
 
-function SendAnswer(data) {
-    this.broadcast.emit("BackAnswer", data)
-}
+    socket.on('disconnect', () => {
+      socket.to(roomId).broadcast.emit('user-disconnected', userId)
+    })
+  })
+})
 
-http.listen(port, () => console.log(`Active on ${port} port`))
-
-
-
+server.listen(3000)
