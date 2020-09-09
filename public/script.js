@@ -13,15 +13,30 @@ const myPeer = new Peer(undefined, {
         { urls: "stun:stun3.l.google.com:19302" },
         { urls: "stun:stun4.l.google.com:19302" },
         {
-          urls: "turn:3.15.4.15?transport=udp",
-          username: "ruedaapp",
-          credential: "ruedaapp"
+          urls: "turn:numb.viagenie.ca?transport=tcp",
+          username: "datay32672@acetesz.com",
+          credential: "123456"
         },
         {
-          urls: "turn:3.15.4.15?transport=tcp",
-          username: "ruedaapp",
-          credential: "ruedaapp"
-        }
+          urls: "turn:numb.viagenie.ca?transport=udp",
+          username: "datay32672@acetesz.com",
+          credential: "123456"
+        },
+        {
+          urls: [ "stun:us-turn9.xirsys.com" ]
+       },
+        {
+          username: "DVg5ibvyLXZ_vgYfwrr9g9z1Q3iDCcxLO--eYA7caTvOQCxK2gY6EXWfxEpghr8CAAAAAF9X9uJydWVkYWFwcA==",
+          credential: "e0b6fc8c-f219-11ea-8e84-0242ac140004",
+          urls: [
+              "turn:us-turn9.xirsys.com:80?transport=udp",
+              "turn:us-turn9.xirsys.com:3478?transport=udp",
+              "turn:us-turn9.xirsys.com:80?transport=tcp",
+              "turn:us-turn9.xirsys.com:3478?transport=tcp",
+              "turns:us-turn9.xirsys.com:443?transport=tcp",
+              "turns:us-turn9.xirsys.com:5349?transport=tcp"
+          ]
+       }
       ]
     }
 })
