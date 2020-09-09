@@ -3,7 +3,7 @@ const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
     host: "peerjsservidor.herokuapp.com",
     port: 443,
-    secure: false,
+    secure: true,
     debug: 3,
     config: {
       iceServers: [
