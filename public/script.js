@@ -7,6 +7,28 @@ const myPeer = new Peer(undefined, {
     debug: 3,
     config: {
       iceServers: [
+        {
+          urls: "stun:3.15.4.15?transport=udp",
+          username: "ruedaapp",
+          credential: "ruedaapp"
+        },
+        {
+          urls: "stun:3.15.4.15?transport=tcp",
+          username: "ruedaapp",
+          credential: "ruedaapp"
+        },
+        {
+          urls: "turn:3.15.4.15?transport=udp",
+          username: "ruedaapp",
+          credential: "ruedaapp"
+        },
+        {
+          urls: "stun:3.15.4.15?transport=tcp",
+          username: "ruedaapp",
+          credential: "ruedaapp"
+        }
+
+        /*
         { urls: "stun:stun.l.google.com:19302" },
         { urls: "stun:stun1.l.google.com:19302" },
         { urls: "stun:stun2.l.google.com:19302" },
@@ -36,7 +58,7 @@ const myPeer = new Peer(undefined, {
               "turns:us-turn9.xirsys.com:443?transport=tcp",
               "turns:us-turn9.xirsys.com:5349?transport=tcp"
           ]
-       }
+       }*/
       ]
     }
 })
