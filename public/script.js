@@ -3,7 +3,31 @@ const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '443'
+  port: '443',
+  config: {
+    iceServers: [
+      {
+        urls: "stun:3.15.4.15?transport=udp",
+        username: "ruedaapp",
+        credential: "ruedaapp",
+      },
+      {
+        urls: "stun:3.15.4.15?transport=tcp",
+        username: "ruedaapp",
+        credential: "ruedaapp",
+      },
+      {
+        urls: "turn:3.15.4.15?transport=udp",
+        username: "ruedaapp",
+        credential: "ruedaapp",
+      },
+      {
+        urls: "turn:3.15.4.15?transport=tcp",
+        username: "ruedaapp",
+        credential: "ruedaapp",
+      }
+    ]
+  }
 })
 let myVideoStream;
 const myVideo = document.createElement('video')
